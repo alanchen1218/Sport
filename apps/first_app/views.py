@@ -7,7 +7,7 @@ from .models import *
 def index(request):
   return render(request, 'first_app/index.html')
 
-def register(request):
+def registration(request):
   errors = User.objects.nameValidator(request.POST)
   if len(errors):
     for key, value in errors.items():
@@ -37,3 +37,18 @@ def login(request):
 
 def success(request):
   return render(request, 'first_app/success.html')
+
+def nbaindex(request):
+  return render(request, 'first_app/nbaindex.html')
+
+def mlbindex(request):
+  return render(request, 'first_app/mlbindex.html')
+
+def nflindex(request):
+  return render(request, 'first_app/nflindex.html')
+
+def about(request):
+  return render(request, 'first_app/about.html')
+
+def music(request):
+  return render(request, 'first_app/music.html')

@@ -5,4 +5,9 @@ urlpatterns = [
     url(r'registration$', views.registration),
     url(r'login$', views.login),
     url(r'success$', views.success),
+    url(r'mlb$', views.mlbindex),
+    url(r'nfl$', views.nflindex),
+    url(r'nba$', views.nbaindex),
+    url(r'music$', views.music),
+    url(r'about$', views.about),
 ]  
