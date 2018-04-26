@@ -2,6 +2,10 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 import bcrypt
+import json
+import pprint
+import requests
+
 from .models import *
   # the index function is called when root is visited
 def index(request):
@@ -66,6 +70,34 @@ def nbaindex(request):
   context = {
     'forums' : Forum.objects.all()
   }
+  # print(type(Forum.objects.all()))
+
+
+  # The 'requests' library makes a get request to the API (the URL). You can 
+  # also add parameters such as API keys. (The sport APIs that you are consuming 
+  # are most likely going to be read-only, which means you can only 'get' their 
+  # data. You cannot edit or delete their data.)
+  # Helpful link: https://www.dataquest.io/blog/python-api-tutorial/
+  # Original API URL with apikey: http://api.sportradar.us/nba/trial/v4/en/league/2018/04/01/changes.json?api_key=mq6dyvpqskzcadjg2rcp6u99
+  headers = {'api_key': 'mq6dyvpqskzcadjg2rcp6u99'}
+  response = requests.get("http://api.sportradar.us/nba/trial/v4/en/league/2018/04/01/changes.json", params=headers)
+  data = response.json()  # 'data' is a dictionary
+
+  # context = {
+  #   'results': data
+  # }
+  
+  ### VIEW INDENTED DATA. Use 'data' to perform any operations on dataset ###
+  # pp = pprint.PrettyPrinter(indent=4)
+  # pp.pprint(data)
+
+  # This is how you retreive information from the API's data. Chances are, you 
+  # won't need all of the fields, so you can choose the ones you want to display 
+  # on your app. Not sure how to print the data in nbaindex.html, sorry :-)
+  print("Names of", data['league']['name'], "Players include: ")
+  for players in data['players']:
+    print(players['full_name'])
+
   return render(request, 'first_app/nbaindex.html', context)
 
 
