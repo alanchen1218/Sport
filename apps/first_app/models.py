@@ -59,3 +59,22 @@ class User(models.Model):
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
     objects = UserManager()
+
+
+
+class Forum(models.Model):
+    title = models.CharField(max_length = 100)
+    description = models.CharField(max_length = 300)
+    created_at = models.DateTimeField(auto_now_add=True)
+    created_by = models.ForeignKey(User, related_name='forumPosts')
+    related_sport = models.CharField(max_length = 5)
+
+class Comment(models.Model):
+    content = models.CharField(max_length =255)
+    commented_by = models.ForeignKey(User, related_name = 'comments')
+    commented_on = models.ForeignKey(Forum, related_name = 'f_comments')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+
+

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            {{user.first_name }} {{user.last_name}}'s Profile
+        </title>
+    </head>
+    <body>
+        <h1>
+            {{user.first_name}}{{user.last_name}}
+        </h1>
+        {% for x in comments %}
+        <h3>
+            {{x.content}}
+        </h3>
+        <p>({{x.created_at}})</p>
+        {%endfor%}
+
+        <a href="/return_previous">Go back</a>
+    </body>
+</html>

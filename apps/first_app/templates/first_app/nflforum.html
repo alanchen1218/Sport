@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            {{forum.title}}
+        </title>
+    </head>
+    <body>
+        <h3>
+            {{forum.title}}
+        </h3>
+        <p>{{forum.description}}</p>
+
+        <P>Created by: <a href="/profiles/{{forum.created_by.id}}">{{forum.created_by.first_name}}</a> </P>
+        <br>
+        {%for x in forum_comments%}
+        {% if x.commented_on.id == forum.id %}
+        <p>
+            {{x.content}}   -<a href="/profiles/{{x.commented_by.id}}"> {{x.commented_by.first_name}}</a>
+            {%if x.commented_by.id == request.session.id %}
+            <p><a href="/delete/{{x.id}}">Delete</a></p>
+            {%endif%}
+        </p>
+        {%endif%}
+        {%endfor%}
+
+        <form action="/nfl_comment_render" method="POST">
+            {% csrf_token %}
+            <input type="text" name="forum_comment">
+            <input type="submit" value="Post Comment">
+        </form>
+        <a href="/nfl">Go back</a>
+    </body>
+</html>

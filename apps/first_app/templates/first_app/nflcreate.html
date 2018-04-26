@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        New discussion
+    </head>
+    <body>
+        <h2>Add a new discussion!</h2>
+
+
+        <form action="nfl_forum_process" method="POST">
+                {% csrf_token %}
+
+            <p>Whats on your mind?<input type="text" name="discussion_name"></p>
+            Whys that?<textarea rows="22" cols="40" name="discussion_desc"></textarea>
+            <input type="hidden" name="sport" value="NFL">
+            <input type="submit" value="Submit">
+
+        </form>
+
+
+    </body>
+</html>

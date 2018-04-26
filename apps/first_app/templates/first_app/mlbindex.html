@@ -7,6 +7,16 @@
     </head>
     <body>
         <h1>MLB content</h1>
+        {%for i in forums %}
+        {%if i.related_sport == 'MLB'%}
+        <p>
+            <a href="/mlb_forum/{{i.id}}">{{i.title}}</a>
+        </p>
+        {%endif%}
+        {%endfor%}
+        <br>
+        <br>
         <a href="/success" name="home"> Main Page </a>
+        <p><a href="/mlb_create_forum">Add discussion</a></p>
     </body>
 </html>
