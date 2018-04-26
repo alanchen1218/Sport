@@ -7,6 +7,17 @@
     </head>
     <body>
         <h1>NBA content</h1>
+
+        {%for i in forums %}
+        {%if i.related_sport == 'NBA'%}
+        <p>
+            <a href="/nba_forum/{{i.id}}">{{i.title}}</a>
+        </p>
+        {%endif%}
+        {%endfor%}
+        <br>
+        <br>
         <a href="/success" name="home"> Main Page </a>
+        <p><a href="/nba_create_forum">Add discussion</a></p>
     </body>
 </html>

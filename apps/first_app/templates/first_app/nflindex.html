@@ -7,6 +7,15 @@
     </head>
     <body>
         <h1>NFL content</h1>
+
+        {%for i in forums %}
+        {% if i.related_sport == 'NFL' %}
+        <p>
+            <a href="/nfl_forum/{{i.id}}">{{i.title}}</a>
+        </p>
+        {%endif%}
+        {%endfor%}
+        <p><a href="/nfl_create_forum">Add a discussion</a></p>
         <a href="/success" name="home"> Main Page </a>
     </body>
 </html>
