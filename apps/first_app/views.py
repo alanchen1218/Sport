@@ -71,12 +71,7 @@ def follow(request, userid):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
   
 
-@register.filter
-def get_item(dictionary, key):
-  return dictionary.get(key)
-
 def nbaindex(request):
-
   request.session['currentsport'] = 'NBA'
   # The 'requests' library makes a get request to the API (the URL). You can 
   # also add parameters such as API keys. (The sport APIs that you are consuming 
@@ -152,20 +147,23 @@ def nba_comment_render(request):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
-
-
-
-
-
-
 def nflindex(request):
-  request.session['currentsport'] = 'NBA'
+  request.session['currentsport'] = 'NFL'
+  headers = {'api_key': 'ckg35fd446kf6u83pjvvhdpd'}
+  response = requests.get("http://api.sportradar.us/nfl-ot1/teams/f0e724b0-4cbf-495a-be47-013907608da9/profile.json?api_key=ckg35fd446kf6u83pjvvhdpd", params=headers)
+  data = response.json()
+
+  player_names = []
+  for players in data['players']:
+    player_names.append(players['name'])
 
   context = {
-    'forums' : Forum.objects.all()
+    'forums' : Forum.objects.all(),
+    'players' : player_names,
+    'name' : data['name']  
   }
-
   return render(request, 'first_app/nflindex.html', context)
+
 
 def shownflforum(request, id):
   
@@ -198,15 +196,22 @@ def nfl_comment_render(request):
 
 
 
-
-
 def mlbindex(request):
   request.session['currentsport'] = 'MLB'
+  
+  headers = {'api_key': '2mmcdj8876bpdacn9x8c8r79'}
+  response = requests.get("http://api.sportradar.us/mlb/trial/v6.5/en/teams/a7723160-10b7-4277-a309-d8dd95a8ae65/profile.json?api_key=2mmcdj8876bpdacn9x8c8r79", params=headers)
+  data = response.json()
+
+  player_names = []
+  for players in data['players']:
+    player_names.append(players['full_name'])
 
   context = {
-    'forums' : Forum.objects.all()
+    'forums' : Forum.objects.all(),
+    'players' : player_names,
+    'name' : data['name']  
   }
-
   return render(request, 'first_app/mlbindex.html', context)
 
 def showmlbforum(request, id):
