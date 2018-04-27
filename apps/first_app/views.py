@@ -5,8 +5,8 @@ import bcrypt
 import json
 import pprint
 import requests
-
 from .models import *
+
   # the index function is called when root is visited
 def index(request):
   return render(request, 'first_app/index.html')
@@ -60,6 +60,15 @@ def userprofile(request, userid):
   }
 
   return render(request, 'first_app/profile.html', context)
+
+def follow(request, userid):
+  if userid == request.session['id']:
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+  else:
+    Follow.objects.create(request_follow=User.objects.get(id=request.session['id']), follow_request=User.objects.get(id=userid))
+    
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+  
 
 
 

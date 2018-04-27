@@ -49,7 +49,7 @@
         {%for x in forum_comments%}
         {% if x.commented_on.id == forum.id %}
         <p>
-            {{x.content}}   -<a href="/profiles/x.commented_by.id">{{x.commented_by.first_name}}</a>
+            {{x.content}}   -<a href="/profiles/{{x.commented_by.id}}">{{x.commented_by.first_name}}</a>
             {%if x.commented_by.id == request.session.id %}
             <p><a href="/delete/{{x.id}}">Delete</a></p>
             {%endif%}

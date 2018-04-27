@@ -75,6 +75,9 @@ class Comment(models.Model):
     commented_on = models.ForeignKey(Forum, related_name = 'f_comments')
     created_at = models.DateTimeField(auto_now_add=True)
 
+class Follow(models.Model):
+    request_follow = models.ForeignKey(User, related_name = 'following')
+    follow_request = models.ForeignKey(User, related_name = 'followers')
 
 
 
