@@ -36,17 +36,16 @@
                 </ul>
             </div>
         </nav>
-        <h2>Add a new discussion!</h2>
 
-
+        <h1> <span class="badge badge-secondary">Add a new discussion!</span></h1>
         <form action="mlb_forum_process" method="POST">
-                {% csrf_token %}
-
-            <p>Whats on your mind?<input type="text" name="discussion_name"></p>
-            Whys that?<textarea rows="22" cols="40" name="discussion_desc"></textarea>
-            <input type="hidden" name="sport" value="MLB">
-            <input type="submit" value="Submit">
-
+            {% csrf_token %}
+            <div class="chat">
+                <p>Whats on your mind?</p><input type="text" name="discussion_name">
+                <p>Whys that?</p><textarea rows="10" cols="40" name="discussion_desc"></textarea>
+                <input type="hidden" name="sport" value="MLB">
+                <input type="submit" value="Submit">
+            </div>
         </form>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

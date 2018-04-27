@@ -16,11 +16,20 @@
 .main{
     margin-top: 70px;
 }
-
-.container{
-  display: inline-block;
+.chat{
   margin-left: 30px;
 }
+.container,
+.roster{
+  display: inline-block;
+  margin-left: 30px;
+  width: 200px
+}
+/* .roster{
+  display: inline-block;
+  width: 200px;
+  vertical-align: top;
+} */
 
 h1.title { 
    font-size: 50px;
