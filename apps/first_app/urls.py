@@ -42,4 +42,7 @@ urlpatterns = [
 
     url(r'about$', views.about),
     url(r'return_previous', views.returnprev),
+
+    url(r'follow/(?P<userid>\d+)$', views.follow),
+    
 ]  
